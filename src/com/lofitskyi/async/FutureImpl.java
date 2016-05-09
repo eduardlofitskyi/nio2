@@ -13,7 +13,7 @@ public class FutureImpl {
         try {
             Path path = Paths.get("file.ini");
             AsynchronousFileChannel channel = AsynchronousFileChannel.open(path);
-            ByteBuffer buffer = ByteBuffer.allocate(10_000_000);
+            ByteBuffer buffer = ByteBuffer.allocate(100_000_000);
 
             Future<Integer> result = channel.read(buffer, 0);
 
@@ -22,7 +22,7 @@ public class FutureImpl {
             }
 
             Integer bytesRead = result.get();
-            System.out.println("Bytes read [" + bytesRead + "]");
+            System.err.println("Bytes read [" + bytesRead + "]");
 
         } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -36,8 +36,8 @@ class Demo{
 
     static void work(){
         while (System.currentTimeMillis() % 9929 != 0){
-            if (System.currentTimeMillis() % 1113 == 0)
-                System.out.printf("[%3d] INSIDE\n", count++);
+            if (System.currentTimeMillis() % 113 == 0)
+                System.err.printf("[%3d] INSIDE\n", count++);
         }
     }
 }
